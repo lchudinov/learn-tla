@@ -1,4 +1,5 @@
 ---- MODULE TwoPhase ----
+EXTENDS TLC
 (***************************************************************************)
 (* This specification is discussed in "Two-Phase Commit", Lecture 6 of the *)
 (* TLA+ Video Course.  It describes the Two-Phase Commit protocol, in      *)
@@ -14,6 +15,12 @@
 (* to abort.                                                               *)
 (***************************************************************************)
 CONSTANT RM  \* The set of resource managers
+
+CONSTANTS r1, r2, r3
+
+RM_value2 == {r1, r2, r3}
+
+RM_value2_permutations == Permutations(RM_value2)
 
 VARIABLES
   rmState,       \* rmState[r] is the state of resource manager r.
