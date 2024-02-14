@@ -1,12 +1,22 @@
 ---- MODULE SimpleClock ----
 EXTENDS Integers
-VARIABLE hr
+VARIABLE hr, mm
 
-HCInit == hr \in 1..12
+HCInit == 
+    /\ hr \in 1..12
+    /\ mm \in 1..60
 
-HCNext == hr' = IF hr # 12 THEN hr + 1 ELSE 1
+ONLYMM == /\ mm /= 60
+         /\ mm' = mm + 1
+         /\ UNCHANGED hr
+         
+ONLYHR == /\ mm = 60 
+         /\ mm' = 1
+         /\ hr' = IF hr # 12 THEN hr + 1 ELSE 1
 
-HC == HCInit /\ [][HCNext]_hr
+HCNext == ONLYHR \/ ONLYMM
+
+HC == HCInit /\ [][HCNext]_<<hr, mm>>
 ------------------------------------
 THEOREM HC => []HCInit
 
