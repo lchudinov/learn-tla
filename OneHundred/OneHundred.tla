@@ -1,5 +1,5 @@
 ---- MODULE OneHundred ----
-EXTENDS Integers
+EXTENDS Integers, FiniteSets
 
 VARIABLES n, sum, res
 
@@ -7,7 +7,7 @@ Init == sum = 0 /\ n = 1..7 /\ res = {}
 
 SumNeq100 ==
     \/ n # {}
-    \/  (sum # 100 /\ n = {})
+    \/  (sum # 100 /\ n = {} /\ Cardinality(res) = 4)
 
 Next1 == \E v \in n : 
         /\ n' = n \ {v}
