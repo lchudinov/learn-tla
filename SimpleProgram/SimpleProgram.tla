@@ -13,5 +13,9 @@ Add1 == \/ /\ pc = "middle"
            /\ pc' = "done"
 
 Next == Pick \/ Add1
+-----------------------------------
+
+TPSpec == Init /\ [][Next]_<<pc, i>>
+
            
 ====
