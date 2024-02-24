@@ -84,6 +84,10 @@ LoseMsg == /\ \/ /\ \E i \in 1..Len(AtoB):
 Next == ASnd \/ ARcv \/ BSnd \/ BRcv \/ LoseMsg
 
 Spec == Init /\ [][Next]_vars
+
+LenConstr == 
+    /\ Len(AtoB) =< 3
+    /\ Len(BtoA) =< 3
 -----------------------------------------------------------------------------
 ABS == INSTANCE ABSpec
 
