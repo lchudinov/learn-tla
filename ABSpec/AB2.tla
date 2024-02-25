@@ -162,6 +162,10 @@ AB == INSTANCE AB WITH AtoB <- RemoveBad(AtoB2), BtoA <- RemoveBad(BtoA2)
 (***************************************************************************)
 THEOREM Spec => AB!Spec
 
+LenConstr == 
+    /\ Len(AtoB2) =< 4
+    /\ Len(BtoA2) =< 4
+
 =============================================================================
 \* Modification History
 \* Last modified Wed Jan 24 16:33:07 PST 2018 by lamport
